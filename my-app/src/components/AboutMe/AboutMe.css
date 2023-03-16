@@ -1,0 +1,130 @@
+.aboutme{
+  max-width: 1280px;
+  min-height: 1080px;
+  background-color: #202020;
+}
+.aboutme__topic{
+  margin: 0px;
+  padding: 0px;
+  padding-top: 110px;
+  margin-left: 70px;
+  margin-bottom: 23px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+}
+.aboutme__box{
+  border-top: solid 2px;
+  display: flex;
+  margin-left: 70px;
+  max-width: 1140px;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  border-color: #E6E6E6;
+}
+.aboutme__text{
+  margin-top: 70px;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+.aboutme__name{
+  margin: 0px;
+  margin-bottom: 18px;
+  padding: 0px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+}
+.aboutme__info{
+  margin: 0px;
+  padding: 0px;
+  margin-bottom: 26px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+}
+.aboutme__description{
+  margin: 0px;
+  padding: 0px;
+  margin-bottom: 100px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+}
+.aboutme__photo{
+  margin-top: 70px;
+  max-width: 270px;
+  max-height: 327px;
+}
+.aboutme__git{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+@media screen  and (max-width: 1160px) {
+  .aboutme__topic{
+    margin-left: 40px;
+  }
+  .aboutme__box{
+    margin-left: 40px;
+    max-width: 668px;
+  }
+  .aboutme__photo{
+    max-width: 255px;
+    max-height: 307px;
+  }
+  .aboutme__text{
+    max-width: 364px;
+    min-height: 306px;
+  }
+  .aboutme__name{
+    font-size: 40px;
+    line-height: 40px;
+  }
+  .aboutme__info{
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .aboutme__description{
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media screen  and (max-width: 690px) {
+  .aboutme__box{
+    margin-left: 0px;
+    max-width: 292px;
+    flex-direction: column;
+  }
+  .aboutme{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+  }
+  .aboutme__photo{
+    max-width: 292px;
+    max-height: 352px;
+  }
+  .aboutme__topic{
+    margin-left: 0px;
+    margin-right: 210px;
+  }
+}

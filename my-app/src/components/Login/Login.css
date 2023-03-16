@@ -1,0 +1,141 @@
+.login{
+  background-color: #202020;
+  max-width: 1280px;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login__top{
+  width: 400px;
+  height: 107px;
+  margin: 0 auto;
+  padding-top: 70px;
+}
+
+.login__title{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  margin-top: 40px;
+}
+
+.login__form{
+  padding: 0px;
+  margin: 0 auto;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  margin-top: 86px;
+  width: 390px;
+}
+
+.login__form-name{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #8B8B8B;
+  margin-bottom: 5px;
+  margin-top: 24px;
+}
+
+.login__input{
+  margin: 0px;
+  padding: 0px;
+  width: 390px;
+  background-color: #202020;
+  border: none;
+  border-bottom: 2px solid #424242;
+  padding-bottom: 10px;
+  color: #ffffff;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  outline: none;
+}
+
+.login__button{
+  margin: 0px;
+  padding: 0px;
+  width: 396px;
+  height: 45px;
+  background: #4285F4;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.login__link{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #4285F4;
+}
+
+.login__question{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #8B8B8B;
+  margin-top: 16px;
+}
+
+.login__bot{
+  text-align: center;
+  width: 396px;
+  margin: 0 auto;
+  margin-top: 223px;
+}
+
+.login__input:focus{
+  border-color:#4285F4;
+}
+
+@media screen  and (max-width: 690px) {
+  .login__input{
+    width: 260px;
+  }
+  .login__bot{
+    width: 260px;
+  }
+  .login__top{
+    width: 260px;
+  }
+  .login__button{
+    width: 260px;
+  }
+  .login__form{
+    width: 260px;
+  }
+  .login__title{
+    text-align: center;
+  }
+  .login__question{
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .login__link{
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
