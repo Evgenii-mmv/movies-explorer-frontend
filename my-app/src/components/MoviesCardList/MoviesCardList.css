@@ -3,6 +3,8 @@
   max-width: 1280px;
   min-height: 1452px;
   background-color: #202020;
+  display: flex;
+  justify-content: center;
 }
 
 

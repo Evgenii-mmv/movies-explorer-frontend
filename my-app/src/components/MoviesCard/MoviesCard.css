@@ -1,5 +1,5 @@
 .movies__list{
-  max-width: 1280px;
+  max-width: 1140px;
   min-height: 1452px;
   display: grid;
   grid-template-columns: minmax( 300px,360px)  minmax(300px ,360px) minmax( 300px,360px);
@@ -7,6 +7,8 @@
   gap: 32px;
   align-content: center;
   justify-content: center;
+  border-top: 2px solid #424242;
+  padding-top: 98px;
 }
 
 .movies__card{
@@ -67,6 +69,10 @@
   line-height: 11px;
 }
 
+.movies__button--active {
+  background-color: #EE3465;
+}
+
 @media screen  and (max-width: 1170px) {
   .movies__list{
     grid-template-columns: minmax( 300px,342px)  minmax(300px ,342px);
@@ -88,6 +94,7 @@
     gap: 0px;
     row-gap: 16px;
     column-gap: 10px;
+    padding-top:50px;
   }
   .movies__text{
     width: 272px;

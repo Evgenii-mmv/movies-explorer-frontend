@@ -1,4 +1,5 @@
 .header {
+  position: relative;
   max-width: 1280px;
   min-height: 74px;
   background-color: #073042;

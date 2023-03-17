@@ -1,3 +1,5 @@
+
+
 .header__links{
   margin-right: 70px;
   font-style: normal;
@@ -81,10 +83,119 @@
   margin-top: 5px;
 }
 
+.header__burger-button{
+  display: none;
+  position: relative;
+  width: 28px;
+  height: 23px;
+  border: none;
+  margin-right: 23px;
+  background-color: #202020;
+}
 
+.header__burger-button span{
+  position: absolute;
+  width: 28px;
+  height: 3px;
+  background-color: #ffffff;
+  left: 0px;
+  transition: transform .5s;
+}
+
+.header.open .header__overlay{
+  transition: transform 1s;
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  background: rgba(0, 0, 0, 0.3);
+  left: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+.header__burger-button span:nth-child(1){
+  transform: translateY(-7.5px);
+}
+
+.header__burger-button span:nth-child(3){
+  transform: translateY(7.5px);
+}
+
+.header.open .header__burger-button span:nth-child(1){
+  transform: translateY(0) rotate(45deg);
+}
+
+.header.open .header__burger-button span:nth-child(2){
+  opacity: 0;
+}
+
+.header.open .header__burger-button span:nth-child(3){
+  transform: translateY(0) rotate(-45deg);
+}
+.header__link-home{
+  display: none;
+}
 @media screen  and (max-width: 1260px) {
   .header__links-container{
     display: none;
+  }
+
+  .header__burger-button{
+    z-index: 100;
+    display: block;
+  }
+
+  .header__links-container{
+    z-index: 55;
+    display: block;
+    position: absolute;
+    top:0px;
+    right: 100%;
+    width: 70%;
+    height: 100vh;
+    margin: 0px;
+    padding-top:159px;
+    background-color: #202020;
+    transition: transform .5s;
+  }
+
+  .header__links--dark{
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .header__link-movie--dark{
+    margin-top: 28px;
+    margin-bottom: 28px;
+  }
+
+  .header__link--dark{
+    margin-bottom: 621px;
+  }
+
+  .header__profile-container{
+    width: auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header.open .header__links-container{
+    transform: translateX(142.9%);
+  }
+
+  .header__profile-link{
+    margin-right: 17px;
+  }
+
+  .header.open .header__link-home{
+    display: block;
+  }
+
+  .active{
+    border-bottom: 2px solid;
   }
 }
 
@@ -107,3 +218,4 @@
     margin-left: 14px;
   }
 }
+

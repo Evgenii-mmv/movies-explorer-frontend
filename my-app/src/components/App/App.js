@@ -18,7 +18,7 @@ function App() {
 //   .then(data => console.log(data))
 //   .catch(error => console.error(error));
   const location = useLocation();
-  const [cards, setCards] = useState([]);
+  // const [cards, setCards] = useState([]);
   // const [currentUser, setCurrentUser] = useState({});
   const [hideFootHead, setHideFootHead] = useState(true);
   const [login, setLogin] = useState(false);
@@ -57,17 +57,17 @@ function App() {
   return (
   <div className='page'>
     <div className='page__wrapper'>
-      {!hideFootHead && <Header withoutLogin login={login} disableLogged={disableLogged}/>}
-        <Routes>
-          <Route path='/' element={ <Main/> } />
-          <Route path='*' element={ <NotFoundPage/> } />
-          <Route path='/signup' element={ <Registration/> } />
-          <Route path='/signin' element={ <Login setLogged={setLogged}/> } />
-          <Route path='/movies' element={ <Movies/> } />
-          <Route path='/saved-movies' element={ <SavedMovies/> } />
-          <Route path='/profile' element={ <Profile/> } />
-        </Routes>
-      {!hideFootHead && <Footer />}
+        {!hideFootHead && <Header  login={login} disableLogged={disableLogged}/>}
+          <Routes>
+            <Route path='/' element={ <Main/> } />
+            <Route path='*' element={ <NotFoundPage/> } />
+            <Route path='/signup' element={ <Registration/> } />
+            <Route path='/signin' element={ <Login setLogged={setLogged}/> } />
+            <Route path='/movies' element={ <Movies/> } />
+            <Route path='/saved-movies' element={ <SavedMovies/> } />
+            <Route path='/profile' element={ <Profile/> } />
+          </Routes>
+        {!hideFootHead && <Footer />}
     </div>
   </div>
   )
