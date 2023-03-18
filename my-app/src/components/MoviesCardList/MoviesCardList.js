@@ -6,7 +6,7 @@ function MoviesCardList() {
   return (
 
       <section className="movies">
-        <div className="movies">
+        <div className="movies__container--all"></div>
           <div className='movies__list'>
             <MoviesCard/>
             <MoviesCard/>
@@ -21,7 +21,6 @@ function MoviesCardList() {
             <MoviesCard/>
             <MoviesCard/>
           </div>
-        </div>
       </section>
 
     )

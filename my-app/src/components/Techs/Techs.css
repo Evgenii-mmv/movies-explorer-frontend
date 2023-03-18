@@ -1,13 +1,14 @@
 .tech{
   background-color: #272727;
   max-width: 1280px;
-  min-height: 625px;
+  min-height: 567px;
 }
 .tech__topic{
-  margin: 0px;
+  margin: 0 auto;
   padding: 0px;
   padding-top: 110px;
-  margin-left: 70px;
+  max-width: 1140px;
+  width: 100%;
   margin-bottom: 23px;
   font-family: 'Inter';
   font-style: normal;
@@ -85,17 +86,33 @@
   .tech__text{
     max-width: 668px;
   }
+
   .tech__topic{
-    margin-left: 40px;
+    max-width: 668px;
+    padding-top: 66px;
   }
+
   .tech__subtitle{
     font-size: 12px;
     line-height: 18px;
+    margin-bottom: 83px;
   }
+
   .tech__name{
     font-size: 12px;
     line-height: 15px;
   }
+
+  .tech__title{
+    margin-top: 82px;
+    margin-bottom: 21px;
+  }
+
+  .tech__block{
+    width: 83px;
+    height: 57px;
+}
+
 }
 
 @media screen  and (max-width: 690px) {
@@ -119,17 +136,20 @@
   .tech__subtitle{
     font-size: 11px;
     line-height: 16px;
+    margin-bottom: 49px;
   }
   .tech__text{
     max-width: 292px;
     border-color: #000000;
   }
   .tech__topic{
-    margin-left: 18px;
+    max-width: 292px;
     margin-bottom: 28px;
     font-size: 18px;
+    padding-top: 109px;
     line-height: 22px;
   }
+
   .tech{
     background-color: #202020;
   }

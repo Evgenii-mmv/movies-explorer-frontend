@@ -4,7 +4,7 @@
   background-color: #202020;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  min-height: 1548px;
 }
 
 .profile__title{
@@ -97,6 +97,27 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 16px;
+}
+
+@media screen  and (max-width: 768px) {
+  .profile{
+    min-height: 1135px;
+  }
+
+  .profile__title{
+    margin-top: 232px;
+    margin-bottom: 100px;
+  }
+  .profile__form{
+    margin-bottom: 211px;
+  }
+
+}
+
+@media screen  and (max-width: 320px) {
+  .profile{
+    min-height: 851px;
+  }
 }
 
 @media screen  and (max-width: 690px) {

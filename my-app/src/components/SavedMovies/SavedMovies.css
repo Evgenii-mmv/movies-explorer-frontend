@@ -1,0 +1,14 @@
+@media screen and (max-width: 1170px) {
+  .movies__container--saved {
+    max-width: 708px;
+    padding-top: 77px;
+}
+
+}
+
+@media screen and (max-width: 730px){
+.movies__container--saved {
+  max-width: 292px;
+}
+
+}

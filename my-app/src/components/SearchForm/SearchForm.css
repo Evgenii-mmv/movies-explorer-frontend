@@ -1,8 +1,7 @@
-* {box-sizing: border-box;}
 .search{
 max-width: 1280px;
 background-color: #202020;
-min-height: 228px;
+min-height: 136px;
 padding-top: 80px;
 }
 

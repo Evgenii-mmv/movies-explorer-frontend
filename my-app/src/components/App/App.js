@@ -58,6 +58,7 @@ function App() {
   <div className='page'>
     <div className='page__wrapper'>
         {!hideFootHead && <Header  login={login} disableLogged={disableLogged}/>}
+        <main>
           <Routes>
             <Route path='/' element={ <Main/> } />
             <Route path='*' element={ <NotFoundPage/> } />
@@ -67,6 +68,7 @@ function App() {
             <Route path='/saved-movies' element={ <SavedMovies/> } />
             <Route path='/profile' element={ <Profile/> } />
           </Routes>
+        </main>
         {!hideFootHead && <Footer />}
     </div>
   </div>

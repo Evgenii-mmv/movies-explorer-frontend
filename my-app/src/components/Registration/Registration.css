@@ -1,19 +1,18 @@
 .registration{
   background-color: #202020;
   max-width: 1280px;
-  height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 1548px;
 }
 
 .registration__top{
   width: 400px;
   height: 107px;
   margin: 0 auto;
-  padding-top: 70px;
 }
 
 .registration__title{
@@ -109,17 +108,44 @@
   width: 396px;
   margin: 0 auto;
   margin-top: 152px;
+  margin-bottom: 100px;
+}
+
+@media screen  and (max-width: 768px) {
+  .registration{
+    min-height: 1135px;
+  }
+
+  .registration__bot{
+    margin-bottom: 232px;
+  }
+}
+
+@media screen  and (max-width: 320px) {
+  .registration{
+    min-height: 851px;
+  }
 }
 
 @media screen  and (max-width: 690px) {
+  .registration{
+    justify-content: stretch;
+  }
   .registration__input{
     width: 260px;
   }
   .registration__bot{
     width: 260px;
+    margin-top: 240px;
+    margin-bottom: 30px;
   }
   .registration__top{
     width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding-top: 54px;
   }
   .registration__button{
     width: 260px;
@@ -128,13 +154,15 @@
   }
   .registration__form{
     width: 260px;
+    margin-top: 53px;
   }
   .registration__title{
-    text-align: center;
+    margin-top: 50px;
   }
   .registration__question{
     font-size: 12px;
     line-height: 15px;
+    margin-top: 11px;
   }
   .registration__link{
     font-size: 12px;

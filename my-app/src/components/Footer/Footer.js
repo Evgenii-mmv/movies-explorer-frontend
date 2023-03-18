@@ -9,8 +9,8 @@ function Footer() {
     <div className="footer__copyright">
       <p className='footer__data footer__data-year'>©2023</p>
       <div className='footer__links'>
-        <p className='footer__data'>Яндекс.Практикум</p>
-        <p className='footer__data'>Github</p>
+        <a href='https://practicum.yandex.ru/profile/web/' target={'_blank'} className='footer__data link'>Яндекс.Практикум</a>
+        <a href='https://github.com/' target={'_blank'} className='footer__data link'>Github</a>
       </div>
     </div>
   </footer>
