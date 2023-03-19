@@ -22,7 +22,7 @@ function MoviesCard() {
       <img src={imageSMALL} className='movies__image' alt='Обложка фильма'></img>
       <button className={`button movies__button ${isSave ? `movies__button--active` : ``}`}
       onClick={handleButtonClick}>
-      <img src={isSave ? galochka : ''} alt='галочка'></img>
+      <img src={isSave ? galochka : ''} alt=''></img>
       {isSave ? '' : 'Сохранить'}</button>
     </div>
     )
@@ -36,7 +36,7 @@ function MoviesCard() {
         </div>
         <img src={imageSMALL} className='movies__image' alt='Обложка фильма'></img>
         <button className='button movies__button'>
-        <img src={krestik} alt='крестик'></img>
+        <img src={krestik} alt=''></img>
         </button>
       </div>
     )

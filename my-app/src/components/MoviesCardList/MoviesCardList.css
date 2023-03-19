@@ -30,4 +30,11 @@
   }
 }
 
+@media screen and (max-width: 730px) {
+  .movies__container--all{
+    padding-top: 10px;
+  }
+}
+
+
 

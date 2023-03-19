@@ -52,9 +52,10 @@
   margin-bottom: 19px;
 }
 .portfolio__imagelink{
-  width: 27px;
+  width: 18px;
   height: 60px;
 }
+
 
 @media screen  and (max-width: 1160px) {
   .portfolio{

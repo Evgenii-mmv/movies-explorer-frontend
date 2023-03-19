@@ -9,6 +9,7 @@
 @media screen and (max-width: 730px){
 .movies__container--saved {
   max-width: 292px;
+  padding-top: 27px;
 }
 
 }

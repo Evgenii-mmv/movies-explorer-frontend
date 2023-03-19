@@ -36,6 +36,7 @@ function Login(props) {
           type="text"
           value={email}
           name='email'
+          placeholder='Ваш E-mail'
           required
           onChange={handleEmailChange}
            />
@@ -48,6 +49,7 @@ function Login(props) {
           id='password-input'
           type="password"
           value={password}
+          placeholder='Введите пароль'
           name='password'
           required
           onChange={handlePasswordChange}

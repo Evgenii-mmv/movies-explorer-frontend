@@ -40,6 +40,7 @@ function Registration() {
           type="text"
           value={name}
           name='name'
+          placeholder='Вашe имя'
           required
           onChange={handleNameChange}
           />
@@ -52,6 +53,7 @@ function Registration() {
           type="text"
           value={email}
           name='email'
+          placeholder='Ваш E-mail'
           required
           onChange={handleEmailChange}
            />
@@ -65,6 +67,7 @@ function Registration() {
           type="password"
           value={password}
           name='password'
+          placeholder='Придумайте пароль'
           required
           onChange={handlePasswordChange}
           />

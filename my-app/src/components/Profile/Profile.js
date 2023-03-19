@@ -12,8 +12,8 @@ function Profile() {
           className=' profile__input profile__input--name'
           id='name-input'
           type="text"
+          placeholder='Вашe новое имя'
           name='name'
-          required
           />
         </label>
         <label className='profile__text-container'>
@@ -21,6 +21,7 @@ function Profile() {
           <input
           className='profile__input profile__input--email'
           id='email-input'
+          placeholder='Ваш новый E-mail'
           type="text"
           name='email'
           />

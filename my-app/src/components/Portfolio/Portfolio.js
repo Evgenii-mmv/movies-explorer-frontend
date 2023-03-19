@@ -14,7 +14,7 @@ function Portfolio() {
         </div>
         <div className='portfolio__linkbox'>
           <a href='https://github.com/Evgenii-mmv/mesto' target={'_blank'} className='portfolio__site link'>Адаптивный сайт</a>
-          <a href='https://github.com/Evgenii-mmv/mesto' target={'_blank'} className='portfolio__link link'>
+          <a href='https://github.com/' target={'_blank'} className='portfolio__link link' >
             <img src={strelka} className='portfolio__imagelink link' alt='стрелка,которая является ссылкой'></img>
           </a>
         </div>
