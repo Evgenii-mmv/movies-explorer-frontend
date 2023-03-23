@@ -1,0 +1,260 @@
+
+
+.header__links{
+  margin-right: 70px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.header__link--type-button{
+  color: #000000;
+}
+
+.header__button{
+  border: none;
+  min-height: 32px;
+  margin-left: 30px;
+  width: 76px;
+  background-color: #3DDC84;
+  border-radius: 3px;
+}
+
+.header__links-contaier{
+  width: 1058px;
+}
+
+.header__links--dark{
+  display: flex;
+  width: 212px;
+  justify-content: space-between;
+}
+
+.header__links-container{
+  width: 1058px;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 70px;
+  align-items: center;
+}
+
+.header__link-movie--dark{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.header__link--dark{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.header__profile-container{
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__profile-link{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.header__image-container{
+  width: 20px;
+  height: 25px;
+  background: #313131;
+  text-align: center;
+  align-content: center;
+  border-radius: 4px;
+}
+
+.header__profile-image{
+  margin-top: 5px;
+}
+
+.header__burger-button{
+  display: none;
+  position: absolute;
+  width: 28px;
+  height: 23px;
+  top: 24px;
+  right: 0px;
+  border: none;
+  margin-right: 23px;
+  background-color: #202020;
+}
+
+.header__burger-button span{
+  position: absolute;
+  width: 28px;
+  height: 3px;
+  background-color: #ffffff;
+  left: 0px;
+  transition: transform .5s;
+}
+
+.header.open .header__overlay{
+  transition: transform 1s;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  background: rgba(0, 0, 0, 0.3);
+  left: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+.header.open .header__burger-button{
+  position: fixed;
+}
+
+.header__burger-button span:nth-child(1){
+  transform: translateY(-7.5px);
+}
+
+.header__burger-button span:nth-child(3){
+  transform: translateY(7.5px);
+}
+
+.header.open .header__burger-button span:nth-child(1){
+  transform: translateY(0) rotate(45deg);
+}
+
+.header.open .header__burger-button span:nth-child(2){
+  opacity: 0;
+}
+
+.header.open .header__burger-button span:nth-child(3){
+  transform: translateY(0) rotate(-45deg);
+}
+.header__link-home{
+  display: none;
+}
+@media screen  and (max-width: 1260px) {
+  .header__links-container{
+    display: none;
+  }
+
+  .header__burger-button{
+    z-index: 100;
+    display: block;
+  }
+
+  .header__links-container{
+    z-index: 55;
+    display: block;
+    position: fixed;
+    top:0px;
+    right: 100%;
+    width: 70%;
+    height: 100vh;
+    margin: 0px;
+    padding-top:159px;
+    background-color: #202020;
+    transition: transform .5s;
+  }
+
+  .header__links--dark{
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .header__link-movie--dark{
+    margin-top: 28px;
+    margin-bottom: 28px;
+  }
+
+  .header__link--dark{
+    margin-bottom: 500px;
+  }
+
+  .header__profile-container{
+    width: auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header.open .header__links-container{
+    transform: translateX(142.9%);
+  }
+
+  .header__profile-link{
+    margin-right: 17px;
+  }
+
+  .header.open .header__link-home{
+    display: block;
+  }
+
+  .active{
+    border-bottom: 2px solid;
+  }
+
+  .header__link-home{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .header__link-movie--dark{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .header__link--dark{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .header__profile-link{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+}
+
+
+@media screen  and (max-width: 1160px) {
+  .header__links{
+    margin-right: 30px;
+  }
+}
+
+@media screen and (max-width: 690px){
+  .header__links{
+    margin-right: 14px;
+    width: 132px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .header__button{
+    width: 54px;
+    margin-left: 14px;
+  }
+
+  .header__links-container{
+    min-height: 851px;
+    right: 143%;
+    width: 100%;
+  }
+
+}
+

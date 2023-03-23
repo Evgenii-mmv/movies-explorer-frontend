@@ -1,0 +1,107 @@
+.movies__list{
+  max-width: 1140px;
+  min-height: 1452px;
+  display: grid;
+  grid-template-columns: minmax( 300px,360px)  minmax(300px ,360px) minmax( 300px,360px);
+  grid-template-rows: minmax( 271px, 319px)  minmax(271px ,319px) minmax( 271px, 319px) minmax( 271px, 319px);
+  gap: 32px;
+  align-content: center;
+  justify-content: center;
+}
+
+.movies__card{
+  background: #222222;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+}
+
+.movies__name{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.movies__time{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #8B8B8B;
+}
+
+.movies__text{
+  display: flex;
+  margin-top: 18px;
+  width: 324px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.movies__image{
+  width: 360px;
+  height: 200px;
+}
+
+.movies__button{
+  background: #313131;
+  border-radius: 30px;
+  border: none;
+  width: 100px;
+  height: 29px;
+  margin-top: 18px;
+  color: #ffffff;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 11px;
+}
+
+.movies__button--active {
+  background-color: #EE3465;
+}
+
+@media screen  and (max-width: 1170px) {
+  .movies__list{
+    grid-template-columns: minmax( 300px,342px)  minmax(300px ,342px);
+    gap: 35px;
+    column-gap: 24px;
+    grid-template-rows: minmax( 271px, 309px) minmax(271px ,309px) minmax( 271px, 309px) minmax( 271px, 309px);
+  }
+  .movies__image{
+    max-width: 342px;
+  }
+}
+@media screen  and (max-width: 730px) {
+  .movies__image{
+    max-width: 300px;
+    height: 168px;
+  }
+  .movies__list{
+    grid-template-columns: 300px;
+    grid-template-rows: 271px;
+    gap: 0px;
+    row-gap: 16px;
+    column-gap: 10px;
+    padding-top: 36px;
+  }
+  .movies__text{
+    width: 272px;
+    margin-bottom: 14px;
+    margin-top: 14px;
+  }
+  .movies__button{
+    margin-top: 14px;
+    margin-bottom: 14px;
+  }
+}
