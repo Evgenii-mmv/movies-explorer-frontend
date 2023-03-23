@@ -1,34 +1,89 @@
-import { Router, Routes, Route, Link, NavLink, useLocation } from 'react-router-dom';
+import { Router, Routes, Route, Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { CurrentUserContext } from '../../context/context';
+import {useForm} from 'react-hook-form';
 
-function Profile() {
+function Profile(props) {
+  const currentUser = useContext(CurrentUserContext);
+  let navigate = useNavigate();
+
+  const {
+    register,
+    formState: {
+      errors, isValid
+    },
+    handleSubmit,
+    reset,
+  } = useForm({
+    mode: "onChange",
+  });
+
+  useEffect(() => {
+    console.log('Profile')
+    let defaultValues = {};
+    defaultValues.username = currentUser.name;
+    defaultValues.email = currentUser.email;
+    reset({ ...defaultValues });
+  }, [currentUser]);
+
+  function singOut() {
+    localStorage.removeItem('jwt');
+    navigate('/');
+    props.disableLogged();
+  }
+
+  const onSubmit = (data) => {
+    const  { username, email } = data;
+    props.updateProfile( username, email );
+    reset();
+  }
 
   return (
     <section className="profile">
-      <h2 className="profile__title">Привет, Виталий!</h2>
-        <fieldset className='profile__form' >
+      <h2 className="profile__title">Привет, {currentUser.name}!</h2>
+        <form className='profile__form' onSubmit={handleSubmit(onSubmit)} >
         <label className='profile__text-container'>
         <p className='profile__input-name profile__input-name--name' >Имя</p>
           <input
-          className=' profile__input profile__input--name'
-          id='name-input'
-          type="text"
-          placeholder='Вашe новое имя'
-          name='name'
+          className={`profile__input profile__input--name ${errors?.username ? `error__input` : ``}`}
+          placeholder='Вашe имя'
+          {...register('username', {
+            required: "Поле обязательно к заполнению!",
+            minLength: {
+              value: 2,
+              message: "Поле должно содержать более 2 символом"
+            },
+            maxLength: {
+              value: 30,
+              message: "Поле должно содержать менее 30 символом"
+            }
+          }
+          )}
           />
         </label>
+        {errors?.username && <div><p className='error'>{errors?.username?.message}</p></div>}
         <label className='profile__text-container'>
         <p className=' profile__input-name profile__input-name--email' >Е-mail</p>
           <input
-          className='profile__input profile__input--email'
-          id='email-input'
-          placeholder='Ваш новый E-mail'
-          type="text"
-          name='email'
+
+          className={`profile__input profile__input--email ${errors?.email ? `error__input` : ``}`}
+          placeholder='Ваш E-mail'
+          {...register('email', {
+            required: "Поле обязательно к заполнению!",
+            pattern: {
+              value: /^[a-zA-Zа-яА-Я0-9]+(?:[._-][a-zA-Zа-яА-Я0-9]+)*@(?:gmail.com|mail.ru)$/,
+              message: "Невалидный e-mail"
+            },
+          }
+          )}
           />
         </label>
-        </fieldset>
-        <button className='button profile__button'>Редактировать</button>
-        <Link to='/' className='profile__link link'>Выйти из аккаунта</Link>
+        {errors?.email && <div><p className='error'>{errors?.email?.message}</p></div>}
+        <div className='profile__bot'>
+        <button className='button profile__button' disabled={!isValid}>Редактировать</button>
+        <p onClick={singOut} className='profile__link link'>Выйти из аккаунта</p>
+        </div>
+        </form>
     </section>
 
     )

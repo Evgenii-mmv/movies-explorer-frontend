@@ -26,6 +26,18 @@
   margin-top: 40px;
 }
 
+.error{
+  padding: 0px;
+  margin: 0px;
+  margin-top: 6px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #EE3465;
+}
+
 .registration__form{
   padding: 0px;
   margin: 0 auto;
@@ -109,6 +121,10 @@
   margin: 0 auto;
   margin-top: 152px;
   margin-bottom: 100px;
+}
+
+.error__input {
+  color: #EE3465;
 }
 
 @media screen  and (max-width: 768px) {
