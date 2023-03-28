@@ -98,7 +98,7 @@ class Api {
 }
 
 const api = new Api({
-  baseURL: "http://localhost:3001",
+  baseURL: "https://api.movie-explorer.diplom.nomoredomains.work",
   headers: {
     authorization: '52388433-afce-471a-9922-beec3eda8533',
     "Content-Type": "application/json",
