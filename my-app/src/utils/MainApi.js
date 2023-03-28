@@ -1,7 +1,8 @@
 class Api {
-  constructor({ baseURL, headers }) {
+  constructor({ baseURL, headers, baseUrlForImage }) {
     this.baseUrl = baseURL;
     this.headers = headers;
+    this.baseUrlForImage = baseUrlForImage;
   }
 
   //Чек дата
@@ -68,14 +69,14 @@ class Api {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify({
-        country: country,
+        country: /* movie.country */country,
         director: director,
         duration: duration,
         year: year,
         description: description,
-        image: image,
+        image: this.baseUrlForImage + image,
         trailerLink: trailerLink,
-        thumbnail: thumbnail,
+        thumbnail: this.baseUrlForImage + thumbnail,
         movieId: movieId,
         nameRU: nameRU,
         nameEN: nameEN
@@ -97,11 +98,12 @@ class Api {
 }
 
 const api = new Api({
-  baseURL: "https://api.movie-explorer.diplom.nomoredomains.work",
+  baseURL: "http://localhost:3001",
   headers: {
     authorization: '52388433-afce-471a-9922-beec3eda8533',
     "Content-Type": "application/json",
   },
+  baseUrlForImage: 'https://api.nomoreparties.co',
 });
 
 export default api;

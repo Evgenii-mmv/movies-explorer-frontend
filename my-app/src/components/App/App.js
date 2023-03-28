@@ -14,12 +14,9 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import PrivateRoute from '../../utils/PrivateRoute/PrivateRoute';
+import PrivateRouteForLoginUser from '../../utils/PrivateRouteForLoginUser/PrivateRouteForLoginUser';
 
 function App() {
-//  fetch('https://api.nomoreparties.co/beatfilm-movies')
-//   .then(response => response.json())
-//   .then(data => console.log(data))
-//   .catch(error => console.error(error));
   const location = useLocation();
   let navigate = useNavigate();
   const [hideFootHead, setHideFootHead] = useState(true);
@@ -27,20 +24,12 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const token = localStorage.getItem("jwt");
   const [loggedIn, setLoggedIn] = useState(token ? true : false);
-  // useEffect(() => {
-  //   if (location.pathname === '/movies')
-  //   {
-  //     fetch('https://api.nomoreparties.co/beatfilm-movies')
-  //       .then(response => response.json())
-  //       .then(data => setCards(data))
-  //       .then(data => console.log(cards))
-  //       .catch(error => console.error(error));
-  //   }
-  // }, [location]);
+
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if(token)
     {
+      setLogin(true);
       api.updateToken(token);
       api.getUser()
         .then((data) => {
@@ -69,7 +58,6 @@ function App() {
     auth.setRegisterUser( username, email, password )
       .then((data) => {
         setCurrentUser(data);
-        console.log(data.name)
         onLogin(data.email, password)
       })
       .catch((err) => {
@@ -88,8 +76,51 @@ function App() {
       });
   }
 
+  function savedMovies (
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    thumbnail,
+    movieId,
+    nameRU,
+    nameEN
+  ) {
+    return api.postMovie(
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    thumbnail,
+    movieId,
+    nameRU,
+    nameEN
+     )
+    .then(() => {
+      console.log('create')
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  }
+
+  function deleteMovie (movieId) {
+    return api.deleteMovie(movieId)
+    .then(() => {
+      console.log('remove')
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  }
+
   function updateProfile ( name, email) {
-    console.log(name);
     return api.updateUser( name, email )
       .then((data) => {
         setCurrentUser(data);
@@ -105,24 +136,27 @@ function App() {
 
   function disableLogged() {
     setLoggedIn(false);
+    setLogin(false);
   }
 
   return (
   <CurrentUserContext.Provider value={currentUser} >
     <div className='page'>
       <div className='page__wrapper'>
-          {!hideFootHead && <Header  login={login} />}
+          {!hideFootHead && <Header />}
           <main>
             <Routes>
               <Route element={<PrivateRoute login={loggedIn} />}>
-                <Route path='/movies' element={ <Movies /> } />
-                <Route path='/saved-movies' element={ <SavedMovies /> } />
+                <Route path='/movies' element={ <Movies savedMovies={savedMovies}/> } />
+                <Route path='/saved-movies' element={ <SavedMovies deleteMovie={deleteMovie}/> } />
                 <Route path='/profile' element={ <Profile disableLogged={disableLogged} updateProfile={updateProfile} setCurrentUser={setCurrentUser}/> } />
               </Route>
               <Route path='/' element={ <Main /> } />
               <Route path='*' element={ <NotFoundPage /> } />
-              <Route path='/signup' element={ <Registration onRegister={onRegister}/> } />
-              <Route path='/signin' element={ <Login onLogin={onLogin}/> } />
+              <Route element={<PrivateRouteForLoginUser login={login} />}>
+                <Route path='/signup' element={ <Registration onRegister={onRegister}/> } />
+                <Route path='/signin' element={ <Login onLogin={onLogin}/> } />
+              </Route>
             </Routes>
           </main>
           {!hideFootHead && <Footer />}

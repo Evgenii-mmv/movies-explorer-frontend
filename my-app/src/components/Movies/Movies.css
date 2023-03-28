@@ -19,8 +19,16 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
+  margin-top: 32px;
 }
-
+.movies__empty{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 15px;
+  margin-top: 32px;
+}
 @media screen  and (max-width: 1230px) {
   .movies__more{
     width: 708px;

@@ -1,4 +1,4 @@
-import { Router, Routes, Route, Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React, { useContext, useEffect } from 'react';
 import { CurrentUserContext } from '../../context/context';
 import {useForm} from 'react-hook-form';
@@ -19,7 +19,6 @@ function Profile(props) {
   });
 
   useEffect(() => {
-    console.log('Profile')
     let defaultValues = {};
     defaultValues.username = currentUser.name;
     defaultValues.email = currentUser.email;
@@ -28,12 +27,18 @@ function Profile(props) {
 
   function singOut() {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('moviesPage');
+    localStorage.removeItem('savedMoviesPage');
     navigate('/');
     props.disableLogged();
   }
 
   const onSubmit = (data) => {
     const  { username, email } = data;
+    if(currentUser.name === username && currentUser.email === email)
+    {
+      return;
+    }
     props.updateProfile( username, email );
     reset();
   }

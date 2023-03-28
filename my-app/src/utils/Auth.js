@@ -51,7 +51,7 @@ class Auth {
 
 
 const auth = new Auth({
-  baseURL: "https://api.movie-explorer.diplom.nomoredomains.work",
+  baseURL: "http://localhost:3001",
   headers: {
     "Content-Type": "application/json",
   },
