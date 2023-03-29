@@ -26,6 +26,7 @@ function Profile(props) {
   }, [currentUser]);
 
   function singOut() {
+    props.setAccept(false)
     localStorage.removeItem('jwt');
     localStorage.removeItem('moviesPage');
     localStorage.removeItem('savedMoviesPage');
@@ -34,6 +35,7 @@ function Profile(props) {
   }
 
   const onSubmit = (data) => {
+    props.setAccept(false)
     const  { username, email } = data;
     if(currentUser.name === username && currentUser.email === email)
     {
@@ -87,6 +89,7 @@ function Profile(props) {
         <div className='profile__bot'>
         <button className='button profile__button' disabled={!isValid}>Редактировать</button>
         <p onClick={singOut} className='profile__link link'>Выйти из аккаунта</p>
+        { props.accept ? (<p className='profile__accept'>Профиль успешно сохранен!</p>) : (<p className='profile__accept'></p>) }
         </div>
         </form>
     </section>

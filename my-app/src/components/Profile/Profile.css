@@ -20,7 +20,17 @@
   margin-top: 74px;
   text-align: center;
 }
-
+.profile__accept{
+  margin: 0px;
+  margin-top: 10px;
+  padding: 0px;
+  color: green;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+}
 .profile__form{
   border: none;
   margin: 0px;

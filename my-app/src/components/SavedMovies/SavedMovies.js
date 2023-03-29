@@ -37,7 +37,7 @@ function getFilteredMovies(movies, filter) {
   return queryFiltered;
 }
 
-function SavedMovies({ deleteMovie }) {
+function SavedMovies() {
   const [movies, setMovies] = useState([]);
   const [filter, setFilter] = useState({
     query: '',
@@ -45,6 +45,7 @@ function SavedMovies({ deleteMovie }) {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [empty, setEmpty] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
@@ -60,7 +61,7 @@ function SavedMovies({ deleteMovie }) {
       setIsLoading(true);
       api.getMovies()
         .then((data) => {
-          if (data) {
+          if (data.movies.length !== 0) {
             saveToStorage(data.movies, filter)
             setMovies(data.movies);
           }
@@ -80,6 +81,7 @@ function SavedMovies({ deleteMovie }) {
       setError('Введите ключевое слово')
       return;
     }
+    setEmpty(false)
     setFilter(filterForm);
   }
 
@@ -104,11 +106,16 @@ function SavedMovies({ deleteMovie }) {
       error={error}
       onSubmit={onSubmit}
       />
-      {isLoading ? (<Preloader/>) : (<section className="movies">
+      {isLoading ? (<Preloader/>) : (
+      <section className="movies">
+        { filteredMovies.length === 0 ? (<p className={`movies__empty ${!empty ? `` : `hide`}`}> Нет фильмов с таким ключевым словом</p>) : (
+          <>
         <div className="movies__container--saved"></div>
           <div className='movies__list'>
-            {filteredMovies.map(movie => <MoviesCard movie={movie}  onRemoveFilm={onRemoveFilm} key={movie.movieId}/>)}
+            {filteredMovies.map(movie => <MoviesCard saved movie={movie} onRemoveFilm={onRemoveFilm} key={movie.movieId}/>)}
           </div>
+          </>
+          )}
       </section>)}
 
     </>

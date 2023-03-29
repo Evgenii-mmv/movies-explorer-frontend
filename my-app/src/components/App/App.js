@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, useNavigate  } from 'react-router-dom';
+import { Routes, Route, useNavigate  } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -24,6 +24,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const token = localStorage.getItem("jwt");
   const [loggedIn, setLoggedIn] = useState(token ? true : false);
+  const [accept, setAccept] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
@@ -76,53 +77,10 @@ function App() {
       });
   }
 
-  function savedMovies (
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailerLink,
-    thumbnail,
-    movieId,
-    nameRU,
-    nameEN
-  ) {
-    return api.postMovie(
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailerLink,
-    thumbnail,
-    movieId,
-    nameRU,
-    nameEN
-     )
-    .then(() => {
-      console.log('create')
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  }
-
-  function deleteMovie (movieId) {
-    return api.deleteMovie(movieId)
-    .then(() => {
-      console.log('remove')
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  }
-
   function updateProfile ( name, email) {
     return api.updateUser( name, email )
       .then((data) => {
+        setAccept(true)
         setCurrentUser(data);
       })
       .catch((err) => {
@@ -147,9 +105,15 @@ function App() {
           <main>
             <Routes>
               <Route element={<PrivateRoute login={loggedIn} />}>
-                <Route path='/movies' element={ <Movies savedMovies={savedMovies}/> } />
-                <Route path='/saved-movies' element={ <SavedMovies deleteMovie={deleteMovie}/> } />
-                <Route path='/profile' element={ <Profile disableLogged={disableLogged} updateProfile={updateProfile} setCurrentUser={setCurrentUser}/> } />
+                <Route path='/movies' element={ <Movies /> } />
+                <Route path='/saved-movies' element={ <SavedMovies /> } />
+                <Route path='/profile' element={ <Profile
+                setAccept={setAccept}
+                accept={accept}
+                disableLogged={disableLogged}
+                updateProfile={updateProfile}
+                setCurrentUser={setCurrentUser}/>
+                } />
               </Route>
               <Route path='/' element={ <Main /> } />
               <Route path='*' element={ <NotFoundPage /> } />

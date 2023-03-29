@@ -25,7 +25,6 @@ class Auth {
         return this._chechRes(res);
       })
       .then((data) => {
-        console.log('set auth:, ', data);
         if (data.token) {
           localStorage.setItem("jwt", data.token);
         }

@@ -3,6 +3,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import { useEffect, useState } from 'react';
 import Preloader from "../Preloader/Preloader";
 import moviesApi from '../../utils/MoviesApi';
+import api from '../../utils/MainApi';
 
 let isResizeOn = false;
 
@@ -81,8 +82,18 @@ function getInitialShowCount(windowWidth) {
   }
 }
 
-function Movies(props) {
+function addSaveToMovies(movies, userMovies) {
+  return movies.map(movie => {
+    return {
+      ...movie,
+      isSave: userMovies.some(userMovie => userMovie.movieId === movie.id),
+    }
+  });
+}
+
+function Movies() {
   const [movies, setMovies] = useState([]);
+  const [userMovies, setUserMovies] = useState([]);
   const [paramsShow, setParamsShow] = useState(PARAMS_SHOW.large);
   const [showCount, setShowCount] = useState(getInitialShowCount(window.innerWidth));
   const [filter, setFilter] = useState({
@@ -90,11 +101,23 @@ function Movies(props) {
     isShortFilm: false,
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [submit, setSubmit] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
     window.addEventListener('resize', onResize);
     const moviesPage = getFromStorage();
+    const token = localStorage.getItem("jwt");
+    api.updateToken(token);
+    api.getMovies()
+        .then((data) => {
+          if (data) {
+            setUserMovies(data.movies);
+          }
+        })
+        .catch((err) => console.log(err))
+        .finally(() => setIsLoading(false));
+
     if (moviesPage) {
       setMovies(moviesPage.movies);
       setFilter(moviesPage.filter);
@@ -116,24 +139,67 @@ function Movies(props) {
     }
     setError('')
     setIsLoading(true);
-    moviesApi.getMovies()
-      .then((data) => {
-        console.log(data)
-        setFilter(filterForm);
-        setMovies(data);
-        saveToStorage(data, filterForm);
-        setShowCount(paramsShow.initial);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false));
+
+    if (!submit){
+      moviesApi.getMovies()
+        .then((data) => {
+          setFilter(filterForm);
+          setMovies(data);
+          saveToStorage(data, filterForm);
+          setShowCount(paramsShow.initial);
+          setSubmit(true)
+        })
+        .catch((err) => console.log(err))
+        .finally(() => setIsLoading(false));
+    }else{
+      setFilter(filterForm);
+      const dataFromFoRmInLocal = getFromStorage();
+      saveToStorage(dataFromFoRmInLocal.movies, filterForm);
+      setIsLoading(false);
+    }
   }
 
   function onCliclShowMore() {
     setShowCount(showCount + paramsShow.moreAdd);
   }
 
-  const filteredMovies = getFilteredMovies(movies, filter);
-  const cuttedMovies = getCuttedMovies(filteredMovies, showCount);
+
+  function onButtonSaveClick(movie) {
+    if (movie.isSave) {
+      const foundMovie = userMovies.find((userMovie) => userMovie.movieId === movie.id);
+      api.deleteMovie(foundMovie._id)
+      .then(() => {
+        setUserMovies(userMovies.filter(userMovie => userMovie.movieId !== movie.id))
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    } else {
+      api.postMovie(
+        movie.country,
+        movie.director,
+        movie.duration,
+        movie.year,
+        movie.description,
+        movie.image.url,
+        movie.trailerLink,
+        movie.thumbnail,
+        movie.id,
+        movie.nameRU,
+        movie.nameEN
+        )
+        .then((data) => {
+          setUserMovies([...userMovies, { ...data.movie, movieId: data.movie.movieId }])
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+      }
+    }
+
+    const filteredMovies = getFilteredMovies(movies, filter);
+    const cuttedMovies = getCuttedMovies(filteredMovies, showCount);
+    const moviesWithSave = addSaveToMovies(cuttedMovies.movies, userMovies);
 
   return (
     <>
@@ -143,7 +209,7 @@ function Movies(props) {
         error={error}
       />
       {isLoading ? (<Preloader/>) : (<section className="movies-container">
-        <MoviesCardList savedMovies={props.savedMovies} movies={cuttedMovies.movies} />
+        {moviesWithSave.length === 0 ? (<p className={`movies__empty ${!submit ? `hide` : ``}`}> Нет фильмов с таким ключевым словом</p>) : (<MoviesCardList onButtonSaveClick={onButtonSaveClick} movies={moviesWithSave} />)}
         {cuttedMovies.isMore && <button type="button" onClick={onCliclShowMore} className='movies__more button' >Ещё</button>}
       </section>)}
     </>
