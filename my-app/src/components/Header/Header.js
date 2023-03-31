@@ -15,7 +15,7 @@ function Header(props) {
   return (
     <header className={`header ${location.pathname !=='/' ? `header--dark` : ``} ${isOpen ? `open` : ``}`}>
       <Link to='/' className=""><img src={headerLogo} alt="Лого" className="header__logo link"/></Link>
-      <Navigathion handleButtonClick={handleButtonClick}/>
+      <Navigathion login={props.login} handleButtonClick={handleButtonClick}/>
     </header>
   )
 }

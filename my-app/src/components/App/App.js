@@ -101,7 +101,7 @@ function App() {
   <CurrentUserContext.Provider value={currentUser} >
     <div className='page'>
       <div className='page__wrapper'>
-          {!hideFootHead && <Header />}
+          {!hideFootHead && <Header login={login}/>}
           <main>
             <Routes>
               <Route element={<PrivateRoute login={loggedIn} />}>

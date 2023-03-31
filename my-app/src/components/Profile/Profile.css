@@ -122,6 +122,10 @@
   color: #EE3465;
 }
 
+.button__disabled{
+  opacity: 0.3;
+}
+
 @media screen  and (max-width: 768px) {
   .profile{
     min-height: 1135px;

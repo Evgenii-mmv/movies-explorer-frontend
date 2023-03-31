@@ -2,15 +2,18 @@ import { useNavigate } from 'react-router-dom';
 import React, { useContext, useEffect } from 'react';
 import { CurrentUserContext } from '../../context/context';
 import {useForm} from 'react-hook-form';
+import { useState } from 'react';
 
 function Profile(props) {
   const currentUser = useContext(CurrentUserContext);
   let navigate = useNavigate();
+  const [isUsernameChanged, setIsUsernameChanged] = useState(false);
+const [isEmailChanged, setIsEmailChanged] = useState(false);
 
   const {
     register,
     formState: {
-      errors, isValid
+      errors, isValid, isDirty
     },
     handleSubmit,
     reset,
@@ -63,7 +66,7 @@ function Profile(props) {
             maxLength: {
               value: 30,
               message: "Поле должно содержать менее 30 символом"
-            }
+            },
           }
           )}
           />
@@ -87,7 +90,7 @@ function Profile(props) {
         </label>
         {errors?.email && <div><p className='error'>{errors?.email?.message}</p></div>}
         <div className='profile__bot'>
-        <button className='button profile__button' disabled={!isValid}>Редактировать</button>
+        <button className={`button profile__button ${!isValid || !isDirty  ? `button__disabled` : ``}`} disabled={!isValid || !isDirty}>Редактировать</button>
         <p onClick={singOut} className='profile__link link'>Выйти из аккаунта</p>
         { props.accept ? (<p className='profile__accept'>Профиль успешно сохранен!</p>) : (<p className='profile__accept'></p>) }
         </div>
