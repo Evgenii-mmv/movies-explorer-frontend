@@ -1,16 +1,10 @@
-import { Router, Routes, Route, Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import profileIcon from '../../images/icon__COLOR_icon-main.svg';
-import { useState } from 'react';
+
 
 function Navigathion(props) {
-  const location = useLocation()
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen);
-  }
-
-  if (location.pathname === '/') {
+  if (!props.login) {
     return (
       <nav className='header__links'>
         <Link className='header__link link' to='/signup'>Регистрация</Link>

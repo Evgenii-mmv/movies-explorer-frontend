@@ -111,6 +111,10 @@
   border-color:#4285F4;
 }
 
+.error__input{
+  color: #EE3465;
+}
+
 @media screen  and (max-width: 768px) {
   .login{
     min-height: 1010px;

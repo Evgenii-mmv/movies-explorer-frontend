@@ -1,83 +1,88 @@
-import React, { useState } from 'react';
 import headerLogo from '../../images/logo.svg';
-import { Router, Routes, Route, Link, NavLink } from 'react-router-dom';
+import { Link, Navigate, useLocation } from 'react-router-dom';
+import {useForm} from 'react-hook-form';
 
-function Registration() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function Registration(props) {
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  }
+  const {
+    register,
+    formState: {
+      errors, isValid
+    },
+    handleSubmit,
+    reset,
+  } = useForm({
+    mode: "onChange"
+  });
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  }
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(`First name: ${name}, Last name: ${email}, Middle name: ${password}`);
+  const onSubmit = (data) => {
+    let  { username, email, password } = data;
+    props.onRegister( username, email, password );
+    reset();
   }
 
   return (
     <section className='registration'>
-
       <div className='registration__top'>
       <Link to='/'><img src={headerLogo} alt='логотип' className='link'></img></Link>
       <h1 className='registration__title'>Добро пожаловать!</h1>
       </div>
-      <fieldset className='registration__form' onSubmit={handleSubmit}>
+      <form className='registration__form' onSubmit={handleSubmit(onSubmit)}>
         <label>
           <p className='registration__form-name' >Имя</p>
           <input
-          className='registration__input registration__input_type_name'
-          id='name-input'
-          type="text"
-          value={name}
-          name='name'
+          className={`registration__input ${errors?.username ? `error__input` : ``}`}
           placeholder='Вашe имя'
-          required
-          onChange={handleNameChange}
+          {...register('username', {
+            required: "Поле обязательно к заполнению!",
+            minLength: {
+              value: 2,
+              message: "Поле должно содержать более 2 символом"
+            },
+            maxLength: {
+              value: 30,
+              message: "Поле должно содержать менее 30 символом"
+            }
+          }
+          )}
           />
         </label>
+         {errors?.username && <div><p className='error'>{errors?.username?.message}</p></div>}
         <label>
         <p className='registration__form-name' >E-mail</p>
           <input
-          className='registration__input registration__input_type_email'
-          id='email-input'
-          type="text"
-          value={email}
-          name='email'
+          className={`registration__input ${errors?.email ? `error__input` : ``}`}
           placeholder='Ваш E-mail'
-          required
-          onChange={handleEmailChange}
+          {...register('email', {
+            required: "Поле обязательно к заполнению!",
+            pattern: {
+              value: /^[a-zA-Zа-яА-Я0-9]+(?:[._-][a-zA-Zа-яА-Я0-9]+)*@(?:gmail.com|mail.ru)$/,
+              message: "Невалидный e-mail"
+            },
+          }
+          )}
            />
         </label>
+        {errors?.email && <div><p className='error'>{errors?.email?.message}</p></div>}
         <label>
           <p
           className='registration__form-name' >Пароль</p>
           <input
-          className='registration__input registration__input_type_password'
-          id='password-input'
-          type="password"
-          value={password}
-          name='password'
+          className={`registration__input ${errors?.password ? `error__input` : ``}`}
           placeholder='Придумайте пароль'
-          required
-          onChange={handlePasswordChange}
+          type="password"
+          {...register('password', {
+            required: "Поле обязательно к заполнению!",
+          }
+          )}
           />
         </label>
-        </fieldset>
+        {errors?.password && <div><p className='error'>{errors?.password?.message}</p></div>}
         <div className='registration__bot'>
-        <Link to='dsadsa'><button type="submit" className='registration__button button' >Зарегистрироваться</button></Link>
+        <button type="submit" className='registration__button button' disabled={!isValid} >Зарегистрироваться</button>
         <p className='registration__question'>Уже зарегистрированы?  <Link to='/signin' className='link registration__link'>Войти</Link></p>
-
         </div>
+        </form>
     </section>
     )
 }

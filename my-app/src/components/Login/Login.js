@@ -1,66 +1,69 @@
 import React, { useState } from 'react';
 import headerLogo from '../../images/logo.svg';
-import { Router, Routes, Route, Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import {useForm} from 'react-hook-form';
 
 function Login(props) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
+  const {
+    register,
+    formState: {
+      errors, isValid
+    },
+    handleSubmit,
+    reset,
+  } = useForm({
+    mode: "onChange"
+  });
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  }
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(` Last name: ${email}, Middle name: ${password}`);
+  const onSubmit = (data) => {
+    let  { email, password } = data;
+    props.onLogin( email, password );
+    reset();
   }
 
   return (
     <section className='login'>
-
       <div className='login__top'>
       <Link to='/'><img src={headerLogo} alt='логотип' className='link'></img></Link>
       <h1 className='login__title'>Рады видеть!</h1>
       </div>
-      <fieldset className='login__form' onSubmit={handleSubmit}>
+      <form className='login__form' onSubmit={handleSubmit(onSubmit)}>
         <label>
         <p className='login__form-name' >E-mail</p>
           <input
-          className='login__input login__input_type_email'
-          id='email-input'
-          type="text"
-          value={email}
-          name='email'
+          className={`login__input ${errors?.email ? `error__input` : ``}`}
           placeholder='Ваш E-mail'
-          required
-          onChange={handleEmailChange}
+          {...register('email', {
+            required: "Поле обязательно к заполнению!",
+            pattern: {
+              value: /^[a-zA-Zа-яА-Я0-9]+(?:[._-][a-zA-Zа-яА-Я0-9]+)*@(?:gmail.com|mail.ru)$/,
+              message: "Невалидный e-mail"
+            },
+          }
+          )}
            />
         </label>
+        {errors?.email && <div><p className='error'>{errors?.email?.message}</p></div>}
         <label>
           <p
           className='login__form-name' >Пароль</p>
           <input
-          className='login__input login__input_type_password'
-          id='password-input'
-          type="password"
-          value={password}
+          className={`login__input ${errors?.password ? `error__input` : ``}`}
           placeholder='Введите пароль'
-          name='password'
-          required
-          onChange={handlePasswordChange}
+          type="password"
+          {...register('password', {
+            required: "Поле обязательно к заполнению!",
+          }
+          )}
           />
         </label>
-        </fieldset>
+        {errors?.password && <div><p className='error'>{errors?.password?.message}</p></div>}
         <div className='login__bot'>
-        <Link to='/movies'><button type="submit" className='login__button button' onClick={props.setLogged}>Войти</button></Link>
+        <button type="submit" className='login__button button' disabled={!isValid}>Войти</button>
         <p className='login__question'>Ещё не зарегистрированы?  <Link to='/signup' className='link login__link'>Регистрация</Link></p>
-
         </div>
+        </form>
     </section>
     )
 }
